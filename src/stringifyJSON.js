@@ -4,8 +4,6 @@
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
 	
-	console.log(obj);
-
 	if (typeof(obj) == "string"){
 		return '"' + obj + '"';
 	};
@@ -21,7 +19,6 @@ var stringifyJSON = function(obj) {
 		if (obj.length == 0){
 			return "[]";
 		}
-
 		else{
 			obj.forEach(function(element){	
 				blankArray.push(stringifyJSON(element));
@@ -45,10 +42,9 @@ var stringifyJSON = function(obj) {
 				}
 			blankObject.push(stringifyJSON(key) + ":" + stringifyJSON(obj[key]));
 			}
-		}
+		};
 		return '{' + blankObject + '}'
-	}
+	};
  	return String(obj);
 
 };
-

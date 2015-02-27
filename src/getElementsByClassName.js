@@ -1,21 +1,16 @@
-// If life was easy, we could just do things the easy way:
-// var getElementsByClassName = function (className) {
-//   return document.getElementsByClassName(className);
-// };
+var getElementsByClassName = function(className) {
+  var results = [];
 
-// But instead we're going to implement it from scratch:
+  var allNodeChecker = function(node) {
+    for(var i = 0; i < node.childNodes.length; i++ ) {
+    	var nodeChild = node.childNodes[i]
+ 	    if (nodeChild.nodeType == document.ELEMENT_NODE && node.childNodes[i].classList.contains(className)) {
+    	  results.push(nodeChild);
+    	}
+      	allNodeChecker(nodeChild);
+    }
+  };
+  allNodeChecker(document);
+  return results;
+};
 
-
-
-var getElementsByClassName = function(className){
-	var blankArray=[];
-	var nodes =document.body.childNodes; 
-	console.log(nodes)
-	nodes.forEach(function(element){
-		console.log(element);
-		if(element.nodeType ===1 && element.classList.contains(className)){
-			blankArray.push(element);
-		}
-	})
-	return blankArray;
-}
